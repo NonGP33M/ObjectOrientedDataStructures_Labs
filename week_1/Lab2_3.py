@@ -1,3 +1,13 @@
+# Chapter : 2 - item : 3 - New Range
+
+# ให้นักศึกษาเขียนโปรแกรมภาษา Python ในการสร้าง range() ใหม่ขึ้นมาโดยใช้ function แค่ 1 function
+
+# ถ้าหากเป็น 1 argument -> range(a)            | start = 0 , end = a , step = 1
+
+# ถ้าหากเป็น 2 argument -> range(a, b)        | start = a , end = b , step = 1
+
+# ถ้าหากเป็น 3 argument -> range(a, b, c)    | start = a , end = b , step = c
+
 def range(*args):
     start = 0
     end = 0

@@ -1,3 +1,7 @@
+# Chapter : 2 - item : 1 - Simple OOP Calculator
+
+# จงเขียน Overloading Function สำหรับ Calculator class โดยที่มีรูปแบบ Code ดังนี้ (สามารถเพิ่มพารามิเตอร์ได้)
+
 class Calculator :
 
     def __init__(self,value):

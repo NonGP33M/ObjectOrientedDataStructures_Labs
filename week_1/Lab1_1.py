@@ -1,3 +1,11 @@
+# Chapter : 1 - item : 1 - รับ h m s --> คำนวณวินาที
+
+# รับจำนวนเต็ม 3 จำนวนจากแป้นพิมพ์
+# เก็บในตัวแปร h, m และ s ซึ่งแทนจำนวน ชั่วโมง นาที และ วินาที
+
+# แล้วแสดงผลเป็น วินาที
+# แสดงผลตามตัวอย่าง
+
 print("*** Converting hh.mm.ss to seconds ***")
 hh,mm,ss = input("Enter hh mm ss : ").split()
 h,m,s = int(hh),int(mm),int(ss)

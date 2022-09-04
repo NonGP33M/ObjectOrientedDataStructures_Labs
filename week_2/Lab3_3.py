@@ -1,3 +1,10 @@
+# Chapter : 3 - item : 3 - Infix to Postfix
+
+#  ส่งมาแล้ว 1 ครั้ง
+# ให้รับ Input เป็น  Infix  และแสดงผลลัพธ์ออกมาเป็น  Postfix   โดยจะมี Operator  5  แบบ  ได้แก่  +   -   *   /   ^
+
+
+
 class Stack:
     def __init__(self):
         self.stack = []
