@@ -129,13 +129,13 @@ class LinkList():
                     self.append(temp)
                     allMoved = False
 
-        present2 = self.head
+        present = self.head
         for i in range(self.getSize()):
-            present2 = present2.next
-            if(present2 is None):
+            present = present.next
+            if(present is None):
                 temp = self.tail
             else:
-                temp = present2.prev
+                temp = present.prev
             check = abs(int(temp.data))//self.div
             for j in range(10):
                 if(check%self.mod == j):
@@ -144,16 +144,16 @@ class LinkList():
         print("Round :",self.count)
         for i in range(10):
             string = str(i)+" :"
-            present3 = self.head
+            present = self.head
             for j in range(self.size):
-                if(present3.digit == i):
-                    string += " "+str(present3.data)
-                present3 =  present3.next
+                if(present.digit == i):
+                    string += " "+str(present.data)
+                present =  present.next
             print(string)
         self.count += 1
         self.div *= 10
         print("------------------------------------------------------------")
-    
+
     def allInZero(self):
         temp = self.head
         for i in range(self.size):

@@ -28,7 +28,7 @@ class Stack:
             self.output.append(self.stack.pop()) 
         
     def pop(self):
-        return self.output.pop(0)
+        return self.output.pop()
 
     def size(self):
         return len(self.output)
@@ -38,6 +38,7 @@ class Stack:
 inp = input('Enter Infix : ')
 
 S = Stack()
+x = []
 
 print('Postfix : ', end='')
 
@@ -47,7 +48,7 @@ priority = {'+':1,'-':1,'*':2,'/':2,'^':3}
 S.push(inp)
 
 while not S.isEmpty():
+    x.append(S.pop())
 
-    print(S.pop(), end='')
-
+print("".join(x)[::-1])
 print()

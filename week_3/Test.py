@@ -1,141 +1,154 @@
-class Node():
-    def __init__(self, data):
-        self.data = data
-        self.prev = None
+class Node:
+    def __init__(self, value):
+        self.value = value
         self.next = None
+        self.previous = None
 
-    def __str__(self):
-        return str(self.data)
 
-class LinkedList():
-    def __init__(self, max):
+class LinkedList:
+    def __init__(self):
         self.head = None
         self.tail = None
-        self.max = max
-        self.count = 0
-        self.max_length = 1
-
-    def push(self, value):
-        node = Node(value)
-        if int(value) > 0:
-            self.max_length = max(self.max_length, len(value))
-        if self.head is None:
-            self.head = node
-            self.tail = node
-        else:
-            self.head.next, node.prev = node, self.head
-            self.head = node
-        self.count+=1
-    
-    def sort(self):
-        temp = []
-        if not self.is_empty():
-            while not self.is_empty():
-                temp.append(int(self.pop_front()))
-            for x in sorted(temp):
-                self.push_front(str(x))
-
-    def push_back(self, value):
-        node = Node(value)
-        if int(value) > 0:
-            self.max_length = max(self.max_length, len(value))
-        if self.head is None:
-            self.head = node
-            self.tail = node
-        else:
-            self.head.next, node.prev = node, self.head
-            self.head = node
-        self.count+=1
-
-    def push_front(self, value):
-        node = Node(value)
-        if int(value) > 0:
-            self.max_length = max(self.max_length, len(value))
-        if self.head is None:
-            self.head = node
-            self.tail = node
-        else:
-            self.tail.prev, node.next = node, self.tail
-            self.tail = node
-        self.count+=1
-
-    def pop_front(self):
-        temp = self.tail.data
-        try:
-            self.tail = self.tail.next
-            self.tail.prev = None  
-            self.count-=1
-        except:
-            self.head = None
-            self.tail = None
-            self.count = 0
-        return temp
+        self.sizes = 0
 
     def __str__(self):
-        temp = ''
-        current = self.tail
-        while current:
-            temp += str(current.data) + ' -> '
-            current = current.next
-        return temp[:-3]
+        if self.isEmpty():
+            return "Empty"
+        cur, s = self.head, str(self.head.value) + " "
+        while cur.next != None:
+            s += str(cur.next.value) + " "
+            cur = cur.next
+        return s
 
-    def get_report(self):
-        temp = ''
-        current = self.tail
-        while current:
-            temp += str(current.data) + ' '
-            current = current.next
-        return temp
+    def reverse(self):
+        if self.isEmpty():
+            return "Empty"
+        cur, s = self.tail, str(self.tail.value) + " "
+        while cur.previous != None:
+            s += str(cur.previous.value) + " "
+            cur = cur.previous
+        return s
 
-    def redix_sort(self):
-        box = []
-        for i in range(10):
-            box.append(LinkedList(0))
-        print("------------------------------------------------------------")
-        stop = False
-        counter = 0
-        stop = False
-        for i in range(self.max_length+1):
-            print("Round : " + str(i+1))
-            while not self.is_empty():
-                temp = self.pop_front()[::-1]
-                try:
-                    box[int(temp[i])].push_front(temp[::-1])   
-                except:
-                    box[0].push_front(temp[::-1])
-            if box[0].length() == self.max:
-                stop = True
-            for j in range(10):
-                box[j].sort()
-                print(str(j) + ' : ' + box[j].get_report())
-                while not box[j].is_empty():
-                    temp = box[j].pop_front()
-                    self.push_back(temp)
-            print("------------------------------------------------------------")
-            counter += 1
-            if stop:
-                break
-        self.max_length = counter
+    def isEmpty(self):
+        return self.sizes == 0
 
-    def length(self):
-        return self.count
+    def append(self, item):
+        newNode = Node(item)
+        if self.head == None:
+            self.head = newNode
+            self.tail = newNode
+        else:
+            self.tail.next = newNode
+            self.tail.next.previous = self.tail
+            self.tail = self.tail.next
+        self.sizes += 1
 
-    def get_max_length(self):
-        return str(self.max_length-1)
+    def addHead(self, item):
+        newNode = Node(item)
+        if not self.isEmpty():
+            temp = self.head
+            self.head = newNode
+            self.head.next = temp
+            self.head.next.previous = self.head
+            self.sizes += 1
+        else:
+            self.append(item)
 
-    def is_empty(self):
-        return self.count == 0
+    def insert(self, pos, item):
+        if self.isEmpty() or pos >= self.sizes:
+            self.append(item)
+        elif pos == 0 or pos <= -(self.sizes):
+            self.addHead(item)
+        else:
+            newNode = Node(item)
+            if pos < 0:
+                run = self.tail
+                for i in range(-(pos)):
+                    run = run.previous
+                run.next.previous = newNode
+                run.next.previous.next = run.next
+                run.next = newNode
+                run.next.previous = run
+            else:
+                run = self.head
+                for i in range(pos):
+                    run = run.next
+                run.previous.next = newNode
+                newNode.previous = run.previous
+                run.previous = newNode
+                newNode.next = run
+            self.sizes += 1
 
-#inp = "-1 -9 -3 -6 -5 -4 -7 0 -8 -2 3 2 5 1 4 9 8 7 6".split()
-inp = input("Enter Input : ").split()
+    def search(self, item):
+        run = self.head
+        for i in range(self.sizes):
+            if (item.strip(" ") == run.value):
+                return 'Found'
+            else:
+                run = run.next
+            return 'Not Found'
 
-lk_master = LinkedList(len(inp))
-lk_org = LinkedList(len(inp))
-for x in inp:
-    lk_master.push(x)
-    lk_org.push(x)
+    def index(self, item):
+        run = self.head
+        for i in range(self.sizes):
+            if item == run.value:
+                return i
+            run = run.next
+        return -1
 
-lk_master.redix_sort()
-print(lk_master.get_max_length() + ' Time(s)')
-print('Before Radix Sort : ' + str(lk_org))
-print('After  Radix Sort : ' + str(lk_master))
+    def size(self):
+        return self.sizes
+
+    def pop(self, pos):
+        run = self.head
+        if not self.isEmpty():
+            if pos >= self.sizes or pos < 0:
+                return 'Out of Range'
+            elif pos == 0:
+                run = self.head
+                if (self.sizes > 1):
+                    self.head.next.previous = None
+                self.head = self.head.next
+                self.sizes -= 1
+                return 'Success'
+
+            elif pos == self.sizes-1:
+                self.tail = self.tail.previous
+                self.tail.next = None
+                self.sizes -= 1
+                return 'Success'
+
+            else:
+                for i in range(pos):
+                    run = run.next
+                run.previous.next = run.next
+                run.next.previous = run.previous
+                self.sizes -= 1
+                return 'Success'
+        else:
+            return 'Out of Range'
+
+
+L = LinkedList()
+inp = input('Enter Input : ').split(',')
+for i in inp:
+    if i[:2] == "AP":
+        L.append(i[3:])
+    elif i[:2] == "AH":
+        L.addHead(i[3:])
+    elif i[:2] == "SE":
+        print("{0} {1} in {2}".format(L.search(i[3:]), i[3:], L))
+    elif i[:2] == "SI":
+        print("Linked List size = {0} : {1}".format(L.size(), L))
+    elif i[:2] == "ID":
+        print("Index ({0}) = {1} : {2}".format(i[3:], L.index(i[3:]), L))
+    elif i[:2] == "PO":
+        before = "{}".format(L)
+        k = L.pop(int(i[3:]))
+        print(("{0} | {1}-> {2}".format(k, before, L)) if k ==
+              "Success" else ("{0} | {1}".format(k, L)))
+    elif i[:2] == "IS":
+        data = i[3:].split()
+        L.insert(int(data[0]), data[1])
+print("Linked List :", L)
+print("Linked List Reverse :", L.reverse())
