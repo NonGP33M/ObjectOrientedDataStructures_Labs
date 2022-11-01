@@ -12,3 +12,4 @@ if(isPalindrome(inp)):
     print("'{}' is palindrome".format(inp))
 else:
     print("'{}' is not palindrome".format(inp))
+
