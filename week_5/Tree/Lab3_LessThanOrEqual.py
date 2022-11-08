@@ -61,18 +61,13 @@ class BST:
             cur = cur.right
         return cur.data
     
-    def getLowerNode(self, node, data):
-        if node == None:
-            return 0
-
-        n = self.getLowerNode(node.left, data)
-        if node.data > data:
-            return n
-        n += self.getLowerNode(node.right, data)
-
-        if node.data <= data:
-            n += 1
-        return n
+    def getLowerNode(self, node, data,l=[]):
+        if node:
+            self.getLowerNode(node.left,data)
+            if node.data <= data:
+                l.append(node.data)
+            self.getLowerNode(node.right,data)
+        return l
 
 T = BST()
 inp = [i for i in input('Enter Input : ').split('/')]
@@ -82,4 +77,4 @@ for i in newInp:
     root = T.insert(i)
 T.printTree(root)
 print("--------------------------------------------------")
-print(T.getLowerNode(root,int(k)))
+print(len(T.getLowerNode(root,int(k))))
