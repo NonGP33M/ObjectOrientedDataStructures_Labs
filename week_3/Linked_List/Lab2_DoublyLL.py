@@ -30,6 +30,7 @@ Chapter : 5 - item : 2 - Doubly Linked List(append,insert,remove)
 
 *******ให้ใช้ class Node ในการทำ Linked List ห้ามใช้ list*********
 
+
 '''
 
 class LinkList():

@@ -15,7 +15,6 @@ Chapter : 5 - item : 1 - Locomotive-(101)
 เป็น 0 <- 4 <- 5 <- 6 <- 2 <- 3 <- 1 ( ให้ใช้ singly linked list) 
 
 
-
  *** Locomotive ***
 Enter Input : 2 3 1 0 4 5 6
 Before : 2 <- 3 <- 1 <- 0 <- 4 <- 5 <- 6

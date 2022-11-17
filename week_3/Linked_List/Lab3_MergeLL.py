@@ -2,6 +2,7 @@
 
 Chapter : 5 - item : 3 - รวม Linked List
 
+
 ให้น้องรับ Linked List มา 2 ตัว จากนั้นนำ 2 Linked List มาต่อกัน โดย L2 จะมาต่อ L1 แบบกลับหลัง
 
 '''
