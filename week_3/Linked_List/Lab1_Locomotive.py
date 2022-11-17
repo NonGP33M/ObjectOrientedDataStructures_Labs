@@ -12,7 +12,7 @@ Chapter : 5 - item : 1 - Locomotive-(101)
 
 เช่น 2 <- 3 <- 1 <- 0 <- 4 <- 5 <- 6
 
-เป็น 0 <- 4 <- 5 <- 6 <- 2 <- 3 <- 1 ( ให้ใช้ singly linked list)
+เป็น 0 <- 4 <- 5 <- 6 <- 2 <- 3 <- 1 ( ให้ใช้ singly linked list) 
 
 
 
