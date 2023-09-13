@@ -9,7 +9,9 @@ Chapter : 6 - item : 2 - Palindrome
 '''
 
 def isPalindrome(value):
-    return value == value[::-1]
+    if len(value) < 2: return True
+    if value[0] != value[-1]: return False
+    return isPalindrome(value[1:-1])
 
 inp = input("Enter Input : ")
 if(isPalindrome(inp)):
